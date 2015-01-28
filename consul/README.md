@@ -32,7 +32,7 @@ docker run -d --name consulserver -h consulserver \
     -p 8302:8302 \
     -p 8302:8302/udp \
     -p 8500:8500 \
-    -p 8600:8600/udp \
+    -p 8600:53/udp \
     progrium/consul -server -advertise $PUBLIC_IP -bootstrap -ui-dir /ui
 ```
 
@@ -59,6 +59,6 @@ docker run -d --name consulclient1 -h consulclient1 \
     -p 8302:8302 \
     -p 8302:8302/udp \
     -p 8500:8500 \
-    -p 8600:8600/udp \
+    -p 8600:53/udp \
     progrium/consul -join CONSUL_SERVER_IP -advertise $PUBLIC_IP
 ```
