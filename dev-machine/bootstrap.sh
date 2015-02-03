@@ -16,12 +16,10 @@ rm -rf /var/cache/oracle-jdk7-installer
 echo 'export JAVA_HOME=/usr/lib/jvm/java-7-oracle' >> /etc/environment
 
 # install SBT
-echo "deb http://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list && \
+echo "deb http://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list && \
 apt-get update && \
-apt-get install -y sbt
+apt-get install -y --force-yes sbt
 
-# clone shop services
-su - vagrant -c 'cd /vagrant && git clone https://github.com/tinoadams/rocoa-catalogue.git'
-
-# run SBT for the first time 
-su - vagrant -c 'cd /vagrant/rocoa-catalogue && sbt tasks'
+# Switch to user "vagrant" and run "sbt" for the first time to download required files
+su -l vagrant
+sbt tasks
