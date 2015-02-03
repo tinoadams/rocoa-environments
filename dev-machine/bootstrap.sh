@@ -20,6 +20,9 @@ echo "deb http://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.lis
 apt-get update && \
 apt-get install -y --force-yes sbt
 
-# Switch to user "vagrant" and run "sbt" for the first time to download required files
+# Switch to user "vagrant", clone service repos and run sb for the first time to download required files
 su -l vagrant
-sbt tasks
+cd /vagrant
+git clone https://github.com/tinoadams/rocoa-catalogue.git
+cd rocoa-catalogue
+sbt compile
